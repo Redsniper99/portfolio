@@ -98,4 +98,21 @@ export const projects: Project[] = [
         codeUrl: 'https://github.com/Redsniper99/wedding_planner',
         featured: true,
     },
+    {
+        id: '6',
+        title: 'Epic Campus Client Side',
+        description: 'A modern educational platform interface designed for seamless student and faculty interaction.',
+        thumbnail: '/projects/epic_campus/1.PNG',
+        images: [
+            '/projects/epic_campus/1.PNG',
+            '/projects/epic_campus/2.PNG',
+            '/projects/epic_campus/3.PNG',
+            '/projects/epic_campus/4.PNG',
+        ],
+        tags: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
+        category: 'frontend',
+        liveUrl: 'https://epic-campus-client-side.vercel.app/',
+        codeUrl: 'https://github.com/Redsniper99/epic_campus_client_side.git',
+        featured: true,
+    },
 ];
