@@ -11,7 +11,6 @@ export default function Hero() {
     const subheadingRef = useRef<HTMLParagraphElement>(null);
     const buttonsRef = useRef<HTMLDivElement>(null);
     const cardsRef = useRef<HTMLDivElement>(null);
-    const glowRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -52,7 +51,7 @@ export default function Hero() {
                 );
             }
 
-            // Floating cards animation
+            // Floating cards entrance only (no infinite loop - use CSS for floating)
             if (cardsRef.current) {
                 const cards = cardsRef.current.querySelectorAll('.floating-card');
                 cards.forEach((card, i) => {
@@ -68,42 +67,12 @@ export default function Hero() {
                             ease: 'power3.out',
                         }
                     );
-
-                    // Floating animation
-                    gsap.to(card, {
-                        y: -10 + i * 5,
-                        rotation: -2 + i * 2,
-                        duration: 3 + i * 0.5,
-                        repeat: -1,
-                        yoyo: true,
-                        ease: 'sine.inOut',
-                        delay: i * 0.3,
-                    });
                 });
             }
         }, sectionRef);
 
-        // Mouse follow glow effect
-        const handleMouseMove = (e: MouseEvent) => {
-            if (glowRef.current && sectionRef.current) {
-                const rect = sectionRef.current.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-
-                gsap.to(glowRef.current, {
-                    x: x - 200,
-                    y: y - 200,
-                    duration: 0.5,
-                    ease: 'power2.out',
-                });
-            }
-        };
-
-        sectionRef.current?.addEventListener('mousemove', handleMouseMove);
-
         return () => {
             ctx.revert();
-            sectionRef.current?.removeEventListener('mousemove', handleMouseMove);
         };
     }, []);
 
@@ -113,15 +82,6 @@ export default function Hero() {
             id="hero"
             className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 py-24"
         >
-            {/* Mouse follow glow */}
-            <div
-                ref={glowRef}
-                className="absolute w-[400px] h-[400px] rounded-full pointer-events-none opacity-30 blur-[100px]"
-                style={{
-                    background: 'radial-gradient(circle, rgba(0, 212, 255, 0.4) 0%, transparent 70%)',
-                }}
-            />
-
             <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                 {/* Left Content */}
                 <div className="text-center lg:text-left">
@@ -206,17 +166,17 @@ export default function Hero() {
                     </div>
                 </div>
 
-                {/* Right Content - Floating Cards */}
+                {/* Right Content - Floating Cards with CSS animations */}
                 <div ref={cardsRef} className="relative h-[400px] lg:h-[500px] hidden lg:flex items-center justify-center">
                     {/* Background glow */}
                     <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-80 h-80 rounded-full bg-gradient-to-br from-[#00d4ff]/20 to-[#a855f7]/20 blur-[80px]" />
+                        <div className="w-64 h-64 rounded-full bg-gradient-to-br from-[#00d4ff]/15 to-[#a855f7]/15 blur-[60px]" />
                     </div>
 
-                    {/* Card Stack */}
+                    {/* Card Stack - CSS float animations instead of infinite GSAP tweens */}
                     <div
-                        className="floating-card absolute glass rounded-2xl p-6 w-72 gradient-border"
-                        style={{ transform: 'rotate(-6deg)', top: '10%', left: '5%' }}
+                        className="floating-card absolute glass rounded-2xl p-6 w-72 gradient-border animate-card-float-1"
+                        style={{ top: '10%', left: '5%' }}
                     >
                         <div className="text-sm text-white/60 mb-2">Frontend</div>
                         <div className="text-2xl font-bold gradient-text mb-1">React & Next.js</div>
@@ -226,8 +186,8 @@ export default function Hero() {
                     </div>
 
                     <div
-                        className="floating-card absolute glass rounded-2xl p-6 w-72 gradient-border"
-                        style={{ transform: 'rotate(3deg)', top: '35%', right: '5%' }}
+                        className="floating-card absolute glass rounded-2xl p-6 w-72 gradient-border animate-card-float-2"
+                        style={{ top: '35%', right: '5%' }}
                     >
                         <div className="text-sm text-white/60 mb-2">Backend</div>
                         <div className="text-2xl font-bold gradient-text-blue mb-1">Node.js & APIs</div>
@@ -237,8 +197,8 @@ export default function Hero() {
                     </div>
 
                     <div
-                        className="floating-card absolute glass rounded-2xl p-6 w-72 gradient-border"
-                        style={{ transform: 'rotate(-2deg)', bottom: '5%', left: '15%' }}
+                        className="floating-card absolute glass rounded-2xl p-6 w-72 gradient-border animate-card-float-3"
+                        style={{ bottom: '5%', left: '15%' }}
                     >
                         <div className="text-sm text-white/60 mb-2">Database</div>
                         <div className="text-2xl font-bold mb-1" style={{ color: '#a855f7' }}>

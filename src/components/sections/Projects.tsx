@@ -59,15 +59,16 @@ export default function Projects() {
         return () => ctx.revert();
     }, [filteredProjects]);
 
-    // 3D tilt effect on hover
+    // 3D tilt effect on hover - desktop only
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>, card: HTMLDivElement) => {
+        if (window.innerWidth < 768) return; // Skip on mobile
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        const rotateX = (y - centerY) / 20;
-        const rotateY = (centerX - x) / 20;
+        const rotateX = (y - centerY) / 25;
+        const rotateY = (centerX - x) / 25;
 
         gsap.to(card, {
             rotateX: rotateX,

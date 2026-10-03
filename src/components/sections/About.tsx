@@ -3,7 +3,6 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { LinearProgress, Box } from '@mui/material';
 import { Code2, Briefcase, Coffee, Award } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -78,15 +77,6 @@ export default function About() {
                     }
                 );
             }
-
-            // Floating animation for image
-            gsap.to(imageRef.current, {
-                y: -10,
-                duration: 3,
-                repeat: -1,
-                yoyo: true,
-                ease: 'sine.inOut',
-            });
         }, sectionRef);
 
         return () => ctx.revert();
@@ -111,7 +101,7 @@ export default function About() {
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                     {/* Portrait */}
-                    <div ref={imageRef} className="flex justify-center lg:justify-start">
+                    <div ref={imageRef} className="flex justify-center lg:justify-start animate-float">
                         <div className="relative">
                             {/* Left-side glow effect to match image lighting */}
                             <div className="absolute -left-8 top-1/2 -translate-y-1/2 w-32 h-64 bg-gradient-to-r from-[#00d4ff]/40 via-[#00d4ff]/20 to-transparent rounded-full blur-3xl" />

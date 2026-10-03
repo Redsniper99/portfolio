@@ -104,7 +104,7 @@ export default function Experience() {
                     {/* Timeline line */}
                     <div
                         ref={lineRef}
-                        className="absolute left-8 md:left-1/2 top-0 bottom-0 w-[2px] origin-top hidden sm:block"
+                        className="absolute left-4 sm:left-8 md:left-1/2 top-0 bottom-0 w-[2px] origin-top"
                         style={{
                             background: 'linear-gradient(180deg, #00d4ff, #a855f7, #00d4ff)',
                         }}
@@ -115,17 +115,17 @@ export default function Experience() {
                         {experience.map((exp, index) => (
                             <div
                                 key={exp.id}
-                                className={`relative flex flex-col sm:flex-row gap-8 ${index % 2 === 0 ? 'sm:flex-row' : 'sm:flex-row-reverse'
+                                className={`relative flex flex-col md:flex-row gap-4 sm:gap-8 pl-10 sm:pl-16 md:pl-0 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
                                     }`}
                             >
                                 {/* Timeline dot */}
-                                <div className="timeline-dot absolute left-8 md:left-1/2 -translate-x-1/2 hidden sm:flex items-center justify-center w-5 h-5 rounded-full bg-[#0a0a0f] border-2 border-[#00d4ff] z-10">
+                                <div className="timeline-dot absolute left-4 sm:left-8 md:left-1/2 -translate-x-1/2 flex items-center justify-center w-5 h-5 rounded-full bg-[#0a0a0f] border-2 border-[#00d4ff] z-10">
                                     <div className="w-2 h-2 rounded-full bg-[#00d4ff] animate-pulse" />
                                 </div>
 
                                 {/* Card */}
                                 <Card
-                                    className={`timeline-card flex-1 ${index % 2 === 0 ? 'sm:mr-[calc(50%+2rem)]' : 'sm:ml-[calc(50%+2rem)]'
+                                    className={`timeline-card flex-1 ${index % 2 === 0 ? 'md:mr-[calc(50%+2rem)]' : 'md:ml-[calc(50%+2rem)]'
                                         }`}
                                     sx={{
                                         background: 'rgba(20, 20, 30, 0.6)',

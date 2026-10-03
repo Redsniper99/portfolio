@@ -27,8 +27,8 @@ export default function ScrollToTop() {
                 aria-label="Scroll to top"
                 sx={{
                     position: 'fixed',
-                    bottom: 32,
-                    right: 32,
+                    bottom: { xs: 20, sm: 32 },
+                    right: { xs: 16, sm: 32 },
                     background: 'rgba(20, 20, 30, 0.8)',
                     backdropFilter: 'blur(10px)',
                     border: '1px solid rgba(255, 255, 255, 0.1)',

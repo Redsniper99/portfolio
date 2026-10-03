@@ -75,27 +75,6 @@ export default function TechStack() {
                         },
                     }
                 );
-
-                // Hover animation setup
-                const items = card.querySelectorAll('.tech-item');
-                items.forEach((item) => {
-                    item.addEventListener('mouseenter', () => {
-                        gsap.to(item, {
-                            y: -4,
-                            scale: 1.02,
-                            duration: 0.3,
-                            ease: 'power2.out',
-                        });
-                    });
-                    item.addEventListener('mouseleave', () => {
-                        gsap.to(item, {
-                            y: 0,
-                            scale: 1,
-                            duration: 0.3,
-                            ease: 'power2.out',
-                        });
-                    });
-                });
             });
         }, sectionRef);
 
@@ -142,6 +121,7 @@ export default function TechStack() {
                                                 '&:hover': {
                                                     borderColor: 'rgba(0, 212, 255, 0.5)',
                                                     boxShadow: '0 0 30px rgba(0, 212, 255, 0.15)',
+                                                    transform: 'translateY(-4px) scale(1.02)',
                                                 },
                                             }}
                                         >
